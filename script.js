@@ -229,7 +229,10 @@ const translations = {
 /* ==========================================================================
    LANGUAGE TRANSITION ENGINE
    ========================================================================== */
-let currentLanguage = localStorage.getItem('guest_lang') || 'ru';
+// Check URL query parameters for language (e.g. ?lang=en)
+const urlParams = new URLSearchParams(window.location.search);
+const langParam = urlParams.get('lang');
+let currentLanguage = langParam || localStorage.getItem('guest_lang') || 'ru';
 
 function setLanguage(lang) {
     if (!translations[lang]) return;

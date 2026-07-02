@@ -984,3 +984,59 @@ main {
         font-size: 0.9rem;
     }
 }
+
+/* ==========================================================================
+   PRINT & PDF LAYOUT OPTIMIZATIONS
+   ========================================================================== */
+@media print {
+    /* Hide navigation, buttons, and floating WhatsApp icons */
+    header, 
+    nav, 
+    .floating-whatsapp,
+    .hero-actions,
+    .btn,
+    .dining-card .btn {
+        display: none !important;
+    }
+    
+    body {
+        background-color: #ffffff !important;
+        color: var(--color-text-body) !important;
+        padding-bottom: 0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    main {
+        max-width: 100% !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    /* Force each major section to start on a new page */
+    .section {
+        page-break-before: always;
+        break-before: page;
+        padding: 40px 0 10px 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Prevent page break before the hero section (first page) */
+    .hero {
+        page-break-before: avoid;
+        break-before: avoid;
+        min-height: 320px !important;
+        margin-top: 0 !important;
+        border-radius: var(--border-radius-md) !important;
+    }
+
+    /* Prevent layout cuts inside card elements */
+    .card, .step-card, .amenity-card, .dining-card, .spa-card {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin-bottom: 16px !important;
+        box-shadow: none !important;
+    }
+}
+
